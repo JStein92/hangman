@@ -1,14 +1,34 @@
-<h1>   ________________</h1>
-<h1>  /\               |</h1>
-<h1>  \/               |</h1>
-<h1>   |               |</h1>
-<h1> -----             |</h1>
-<h1>   |               |</h1>
-<h1>   |               |</h1>
-<h1>   /\              |</h1>
-<h1>  /  \             |</h1>
-<h1>                   |</h1>
-<h1>               ____|____</h1>
-<h1>                   </h1>
-<h1>                   </h1>
-<h1> __ __ __ __ __ __ </h1>
+<h1>Lets play Hangman</h1>
+
+@if (Model==null)
+{
+  <a href="/NewGuess">Start the Game!</a>
+}
+
+@if (Model!=null)
+{
+  <h2>Guessed: @Model["blankstring"]</h2>
+  <p>Guesses: @Model["currentGuesses"] out of @Model["maxGuesses"]</p>
+  <p>Correct guesses: @Model["correctGuesses"]</p>
+
+  @foreach(var myChar in @Model["guessedChars"])
+  {
+    <ul>
+     <li>@myChar</li>
+    </ul>
+  }
+
+  @if(Model["currentGuesses"]<6)
+  {
+    <a href="/NewGuess">Make a new guess</a>
+  }
+
+  @if(Model["correctGuesses"] == @Model["blankstring"].Length)
+  {
+    <h1>YOU WIN</h1>
+  }
+  @if(Model["currentGuesses"] == 6)
+  {
+    <h1>YOU LOSE</h1>
+  }
+}

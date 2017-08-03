@@ -1,7 +1,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Game
+namespace HangmanGame
 {
     public class Program
     {
